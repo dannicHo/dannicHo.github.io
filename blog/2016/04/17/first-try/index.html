@@ -9,8 +9,7 @@
   <meta name="author" content="Dannic Ho">
 
   
-  <meta name="description" content="
-">
+  <meta name="description" content="吼吼，这个周末除了昨天聚餐，最开心的事大概就是搭好了这个博客空间，说起来过程也是千辛万苦哇，第一篇博客必须要说道说道。其实我一直没有写博客的习惯，以前看书或是总结什么都是用文档记笔记，不但方式low，而且放在电脑里不整理的话时间久了最后都找不到了（后来用evernote好些了，不过写的也不多）。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -85,7 +84,73 @@
   </header>
 
 
-<div class="entry-content">
+<div class="entry-content"><p>吼吼，这个周末除了昨天聚餐，最开心的事大概就是搭好了这个博客空间，说起来过程也是千辛万苦哇，第一篇博客必须要说道说道。其实我一直没有写博客的习惯，以前看书或是总结什么都是用文档记笔记，不但方式low，而且放在电脑里不整理的话时间久了最后都找不到了（后来用<a href="https://evernote.com">evernote</a>好些了，不过写的也不多）。</p>
+
+<p>知道octopress这个博客框架，还是之前看一些大神的博客，发现他们都有自己的博客空间，而且界面风格有的都很相似，往博客底部一拉，才发现都是用的“octopress”。不过当时也没怎么看，最近心血来潮，想着来研究研究octopress，搭起来才发现真的很简单。</p>
+
+<p><img src="/images/blog/1.octopress_footer.png" alt="网站底部" /></p>
+
+<p><a href="http://octopress.org/">Octopress官网</a></p>
+
+<h2>搭建过程</h2>
+
+<p>搭建过程其实就是照着官网的文档走。</p>
+
+<h3>1. <a href="http://octopress.org/docs/setup/">set up octopress</a></h3>
+
+<ul>
+<li><p><strong>Install Git.</strong></p>
+
+<p>  之前电脑已经安装，跳过</p></li>
+<li><p><strong>Install Ruby 1.9.3 or greater using either rbenv or RVM.</strong></p>
+
+<p>  安装的rbenv，ubuntu系统把其中的~/.bash_profile改成~/.bashrc</p></li>
+<li><p><strong>Install one of the ExecJS supported JavaScript runtimes.</strong></p></li>
+<li><p><strong>set up</strong></p>
+
+<p>  这一步中bundle install可折腾了一会儿</p>
+
+<p>  开始网络原因，参照<a href="https://ruby.taobao.org/">RubyGems 镜像</a>解决</p>
+
+<p>  后来出现安装问题，参照<a href="http://stackoverflow.com/questions/12119138/failed-to-build-gem-native-extension-when-install-redcloth-4-2-9-install-linux">failed-to-build-gem-native-extension-when-install-redcloth-4-2-9-install-linux</a>执行<code>sudo apt-get install ruby1.9.1-full</code>解决，应该是当时安装rbenv，安装了多个ruby版本导致的。</p></li>
+</ul>
+
+
+<h3>2. <a href="http://octopress.org/docs/deploying/">deploy</a></h3>
+
+<p>我选择的是<a href="http://octopress.org/docs/deploying/github/">Deploying to Github Pages</a></p>
+
+<ul>
+<li><p>git库名必须是username.github.io格式</p></li>
+<li><p><code>rake setup_github_pages</code>执行这步的时候，输入<code>git@github.com:dannicHo/dannicHo.github.io.git</code>，到<code>rake deploy</code>的时候就报没有权限，但是实际上我本地已经生成了github公私钥并上传了公钥，而且本地直接执行<code>git push</code>都没问题。实在没找到原因，无奈最后只能使用<code>https://github.com/dannicHo/dannicHo.github.io.git</code>，到<code>rake deploy</code>的时候再输入github用户名密码 = =</p></li>
+<li><p><code>rake deploy</code>这个过程要好好理解一下，当前项目根目录（octopress）是存放博客的源码，实际部署的东西都是放在根目录下的"_deploy"里，deploy成功后，"_deploy"目录下的东西会自动提交到远端的master分支。根目录下（octopress）的改动需要自己手动提交到source分支，不要担心"_deploy"又会被提交一次到source分支上，因为.gitignore文件已经把它忽略了。</p></li>
+<li><p>基于上面的理解，所以在执行<code>rake deploy</code>时候，报"push master rejected"的问题，就好解决了，只用把"_deploy"目录下的东西和远端master分支对齐（应该merge一下也行，不过我感觉没意义，直接和远端对齐再deploy比较干净），然后重新deploy就好了。</p></li>
+<li><p>还有根据已有的git库，在一个新目录或新电脑上初始化项目也就比较简单了，先clone source分支代码到根目录，然后在根目录下新建"_deploy"目录，把master分支内容clone到"_deploy"下面就好了。</p></li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~
+</span><span class='line'>git clone git@github.com:dannicHo/dannicHo.github.io.git -b source octopress
+</span><span class='line'>cd octopress
+</span><span class='line'>git clone git@github.com:dannicHo/dannicHo.github.io.git -b master _deploy</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>话说我deploy的时候遇到"push maste rejected"的问题，就是因为<code>rake setup_github_pages</code>时输入的是http协议的库地址，所以<code>rake deploy</code>d要输入github用户名密码，有一次输错用户名，然后再次执行<code>rake deploy</code>就报出来了。</li>
+</ul>
+
+
+<h3>3. <a href="http://octopress.org/docs/configuring/">configure</a></h3>
+
+<p>只简单的把<code>title</code>，<code>subtitle</code>和<code>author</code>配置了一下</p>
+
+<h3>4. <a href="http://octopress.org/docs/blogging/">blog with octopress</a></h3>
+
+<p>最后就是开始用markdown写博客了。编辑器我用的是sublime text3，安装了markdown editting和markdown preview两个插件，很方便，其实preview使用octopress的<code>rake preview</code>功能就挺好了，我这篇博客就是这么用的，哈哈。</p>
 </div>
 
 
