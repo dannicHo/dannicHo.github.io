@@ -4,7 +4,7 @@
   <title><![CDATA[Dannic Ho]]></title>
   <link href="http://dannicho.github.io/atom.xml" rel="self"/>
   <link href="http://dannicho.github.io/"/>
-  <updated>2016-04-17T13:26:34+08:00</updated>
+  <updated>2016-04-17T14:44:37+08:00</updated>
   <id>http://dannicho.github.io/</id>
   <author>
     <name><![CDATA[Dannic Ho]]></name>
@@ -12,5 +12,14 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[First Try]]></title>
+    <link href="http://dannicho.github.io/blog/2016/04/17/first-try/"/>
+    <updated>2016-04-17T14:00:56+08:00</updated>
+    <id>http://dannicho.github.io/blog/2016/04/17/first-try</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
 </feed>
