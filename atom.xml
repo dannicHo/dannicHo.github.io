@@ -4,7 +4,7 @@
   <title><![CDATA[Dannic Ho]]></title>
   <link href="http://dannicho.github.io/atom.xml" rel="self"/>
   <link href="http://dannicho.github.io/"/>
-  <updated>2016-04-17T19:36:54+08:00</updated>
+  <updated>2016-04-23T11:45:52+08:00</updated>
   <id>http://dannicho.github.io/</id>
   <author>
     <name><![CDATA[Dannic Ho]]></name>
@@ -28,7 +28,7 @@
 
 <h2>搭建过程</h2>
 
-<p>搭建过程其实就是照着官网的文档走。</p>
+<p>搭建过程其实就是照着官网的文档走。各种命令遇到执行不成功的问题，都加上sudo试试。搭好之后，可以在本地设置<code>alias rake='sudo rake'</code>，省去每次都加上sudo。</p>
 
 <h3>1. <a href="http://octopress.org/docs/setup/">set up octopress</a></h3>
 
@@ -42,7 +42,7 @@
 <li><p><strong>Install one of the ExecJS supported JavaScript runtimes.</strong></p></li>
 <li><p><strong>set up</strong></p>
 
-<p>  这一步中bundle install可折腾了一会儿</p>
+<p>  这一步中<code>bundle install</code>可折腾了一会儿</p>
 
 <p>  开始网络原因，参照<a href="https://ruby.taobao.org/">RubyGems 镜像</a>解决</p>
 
